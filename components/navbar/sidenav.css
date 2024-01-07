@@ -1,0 +1,11 @@
+.sidenav{
+    display: none;
+}
+
+.sidenav .sidebar-container show-sidebar{
+    display: flex;
+    color: aqua;
+    background-color: #3D464D;
+    transition: background-color 0.3s ease;
+    transition: transform 0.8s;
+}

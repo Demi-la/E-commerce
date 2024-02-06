@@ -8,7 +8,7 @@ import Image from "next/image";
 const Categories = () => {
   return (
     <>
-      <Box p={"3rem"}>
+      <Box p={{ base: "1rem", md: "1rem", lg: "3rem" }} width={"100%"} overflow={"hidden"}>
         <Box>
           <Flex
             flexDirection="row"
@@ -16,19 +16,26 @@ const Categories = () => {
             color={"#3D464D"}
             gap={"1rem"}
           >
-            <Text fontSize={"2rem"} fontWeight={"700"}>
+            <Text
+              fontSize={{ base: "1.2rem", md: "1.5rem", lg: "2rem" }}
+              fontWeight={{ base: "500", md: "600", lg: "700" }}
+            >
               CATEGORIES
             </Text>
             <Box
               borderTop={"0.2px dashed #3D464D"}
-              width="80%"
+              width={{ base: "65%", md: "80%", lg: "80%" }}
               mt="10px"
               mb="10px"
               fontSize={"2px"}
             ></Box>
           </Flex>
           <Grid
-            gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+            gridTemplateColumns={{
+              base: "1fr",
+              md: "1fr 1fr",
+              lg: "1fr 1fr 1fr 1fr",
+            }}
             gridRowGap={"2rem"}
             alignItems={"center"}
             justifyItems={"center"}
@@ -36,7 +43,7 @@ const Categories = () => {
             {CategoriesData.map((item, index) => (
               <Box
                 key={index}
-                w={"18rem"}
+                w={{ base: "100%", md: "90%", lg: "18rem" }}
                 h={"8rem"}
                 background={"white"}
                 // overflow={"hidden"}

@@ -4,6 +4,7 @@ import Navbar from './navbar/navbar'
 import Banner from './banners/banner'
 import Categories from './categories/categories'
 import FeaturedProduct from './featuredProduct/featuredProduct'
+import Footer from './footer'
 
 const Pages = () => {
   return (
@@ -14,6 +15,7 @@ const Pages = () => {
         <Categories/>
         <FeaturedProduct/>
       </Box>
+      <Footer/>
     </Box>
   );
 }

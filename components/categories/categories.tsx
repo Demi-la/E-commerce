@@ -1,8 +1,8 @@
 "use client";
-import { Box, Flex, Grid, Text, css } from "@chakra-ui/react";
+import { Box, Flex, Grid, Text,Image } from "@chakra-ui/react";
 import React from "react";
 import { CategoriesData } from "./data";
-import Image from "next/image";
+
 // import styled from "@emotion/styled";
 
 const Categories = () => {
@@ -44,8 +44,10 @@ const Categories = () => {
               <Box
                 key={index}
                 w={{ base: "100%", md: "90%", lg: "18rem" }}
-                h={"8rem"}
+                h={"6rem"}
+                paddingLeft={"1rem"}
                 background={"white"}
+                // px={"3rem"}
                 // overflow={"hidden"}
                 mt={"1rem"}
                 // position={"relative"}
@@ -58,7 +60,7 @@ const Categories = () => {
                     // transform: "scale(1)",
                     // rotate: "(5deg)",
                     // transition: "transform 0.5s ease-in-out",
-                    backgroundColor: "yellow",
+                    // backgroundColor: "yellow",
                   }}
                 >
                   <Box
@@ -73,7 +75,7 @@ const Categories = () => {
                       transition: "transform 0.3s ease-in-out", // Smooth transition effect
                     }}
                   >
-                    <Image src={item.photo} alt="product image" />
+                    <Image src={item.photo} alt="product image"  height={"80%"}/>
                   </Box>
                   <Box
                   // _hover={{

@@ -13,16 +13,17 @@ import {
   Circle,
   InputGroup,
   Input,
-} from '@chakra-ui/react';
-import React from 'react';
-import { IoMdArrowDropdown, IoIosArrowDown } from 'react-icons/io';
-import { AiFillHeart, AiOutlineSearch } from 'react-icons/ai';
-import { FaShoppingCart } from 'react-icons/fa';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { FcMenu } from 'react-icons/fc';
-import { FaTimes } from 'react-icons/fa';
-import { Link } from '@chakra-ui/react';
-import SideNav from './sideNav';
+} from "@chakra-ui/react";
+import React from "react";
+import { IoMdArrowDropdown, IoIosArrowDown } from "react-icons/io";
+import { AiFillHeart, AiOutlineSearch } from "react-icons/ai";
+import { FaShoppingCart } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { FcMenu } from "react-icons/fc";
+import { FaTimes } from "react-icons/fa";
+// import { Link } from '@chakra-ui/react';
+import SideNav from "./sideNav";
+import Link from "next/link";
 
 type NavProps = {
   isSidebarOpen: boolean;
@@ -30,24 +31,23 @@ type NavProps = {
 };
 
 const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
-
   const CategoriesMenu = [
     {
-      items: 'Dresses',
-      url: '/',
+      items: "Dresses",
+      url: "/",
     },
-    { items: 'Shirts', url: '/' },
-    { items: 'Jeans', url: '/' },
-    { items: 'Swimwear', url: '/' },
-    { items: 'Sportwear', url: '/' },
-    { items: 'Sleepwear', url: '/' },
-    { items: 'Jumpsuits', url: '/' },
-    { items: 'Blazers', url: '/' },
+    { items: "Shirts", url: "/" },
+    { items: "Jeans", url: "/" },
+    { items: "Swimwear", url: "/" },
+    { items: "Sportwear", url: "/" },
+    { items: "Sleepwear", url: "/" },
+    { items: "Jumpsuits", url: "/" },
+    { items: "Blazers", url: "/" },
     {
-      items: 'Jackets',
-      url: '/',
+      items: "Jackets",
+      url: "/",
     },
-    { items: 'Shoes', url: '/' },
+    { items: "Shoes", url: "/" },
   ];
 
   return (
@@ -346,8 +346,6 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
                     fontWeight={"400"}
                     borderRadius={"none"}
                     border={"none"}
-                    
-                
                   >
                     <MenuItem bg={"#FFD333"}>Shopping cart</MenuItem>
                     <MenuItem bg={"#FFD333"}>Checkout</MenuItem>

@@ -1,8 +1,8 @@
 
-import cat1 from "../../public/img/cat-1.jpg"
-import cat2 from "../../public/img/cat-2.jpg";
-import cat3 from "../../public/img/cat-3.jpg";
-import cat4 from "../../public/img/cat-4.jpg";
+import cat1 from "../../../public/img/cat-1.jpg"
+import cat2 from "../../../public/img/cat-2.jpg";
+import cat3 from "../../../public/img/cat-3.jpg";
+import cat4 from "../../../public/img/cat-4.jpg";
 
 
 export const CategoriesData = [

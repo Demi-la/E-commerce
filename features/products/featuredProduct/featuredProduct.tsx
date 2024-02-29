@@ -1,12 +1,29 @@
+"use client";
 import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
 import React from "react";
 import { featuredProductData, vendors } from "./data";
+import { useGetProductQuery } from "../../../lib/api";
 
 interface FeaturedProductType {
   //
 }
 
-const FeaturedProduct: React.FC <FeaturedProductType> = () => {
+const FeaturedProduct: React.FC<FeaturedProductType> = () => {
+   const { data, error, isLoading } = useGetProductQuery("");
+   console.log("data =========================", data);
+   console.log("error", error);
+   console.log("isLoading", isLoading);
+   if (isLoading) {
+     return <div>Loading...</div>;
+   }
+
+   if (error) {
+     return <div>Error</div>;
+   }
+
+   if (data == null || data == undefined) {
+     return <div>No data available</div>;
+   }
   return (
     <>
       <Box
@@ -45,7 +62,7 @@ const FeaturedProduct: React.FC <FeaturedProductType> = () => {
           justifyItems={"center"}
           mt={"2rem"}
         >
-          {featuredProductData.map((item, index) => (
+          {data.map((item: any, index: number) => (
             <Box
               key={index}
               background={"white"}
@@ -53,14 +70,15 @@ const FeaturedProduct: React.FC <FeaturedProductType> = () => {
               boxSizing="border-box"
               position={"relative"}
             >
-              <Box>
+              <Box height={"15rem"} mb={"1rem"}>
                 <Image
-                  src={item.productImage}
+                  src={item.image}
                   alt="Product image"
                   position={"relative"}
                   transition={".5s"}
                   overflow={"hidden"}
                   width={"100%"}
+                  height={"13rem"}
                 />
               </Box>
               <Box
@@ -68,22 +86,24 @@ const FeaturedProduct: React.FC <FeaturedProductType> = () => {
                 textAlign={"center"}
                 height={"5rem"}
                 fontWeight={500}
+                // zIndex={"1"}
+                // position={"absolute"}
                 // display={"flex"}
                 // justifyContent={"center"}
                 color={"#3D464D"}
               >
-                <Text mb={"0.5rem"} mt={"2rem"} fontSize={"1rem"}>
-                  {item.productName}
+                <Text mb={"0.5rem"} mt={"0.5rem"} fontSize={"0.8rem"}>
+                  {item.title}
                 </Text>
-                <Flex justifyContent={"center"} gap={"1rem"}>
-                  <Text fontSize={"1.25rem"}>{item.productNewPrice}</Text>
+                <Flex justifyContent={"center"} gap={"1.5rem"} fontWeight={400}>
+                  <Text>Price: ${item.price}</Text>
                   <Text
-                    color={"#6c757d"}
-                    fontSize={"1rem"}
-                    mt={"3px"}
-                    textDecoration={"line-through"}
+                  // color={"#6c757d"}
+                  // fontSize={"1rem"}
+                  // mt={"3px"}
+                  // textDecoration={"line-through"}
                   >
-                    {item.productOldPrice}
+                    Ratings: {item["rating"]["rate"]}
                   </Text>
                 </Flex>
               </Box>

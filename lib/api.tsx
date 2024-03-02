@@ -9,8 +9,11 @@ export const apiRequest = createApi({
     getProduct: builder.query<any, string>({
       query: () => `products`,
     }),
-    getProductsDetails: builder.query<any, string>({
-      query: (id) => `products/${id}`,
+    getProductsDetails: builder.query<any, number>({
+      query: (id) => {
+        console.log("==============================> id", id);
+        return `products/${id}`;
+      },
     }),
   }),
 });
@@ -19,3 +22,5 @@ export const {
   useGetProductQuery,
   useGetProductsDetailsQuery,
 } = apiRequest;
+
+

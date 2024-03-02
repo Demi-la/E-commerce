@@ -1,22 +1,18 @@
 "use client";
 import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { featuredProductData, vendors } from "./data";
-import { useGetProductQuery } from "../../../lib/api";
+import React from "react";
+import { featuredProductData, vendors } from "../../features/products/featuredProduct/data";
+import { useGetProductQuery } from "../../lib/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
 interface FeaturedProductType {
   //
   productDetailsId: number;
-  index: number;
-  
 }
 
-const FeaturedProduct: React.FC<FeaturedProductType> = () => {
-
-  const [isHover, setIsHover] = useState<number | null>(null);
-
+const FeaturedProduct: React.FC<FeaturedProductType> = ({
+  productDetailsId,
+}) => {
   const router = useRouter();
   const { data, error, isLoading } = useGetProductQuery("");
   //  console.log("data =========================", data);
@@ -33,15 +29,6 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
   if (data == null || data == undefined) {
     return <div>No data available</div>;
   }
-  
- const handleMouseEnter = (index: number) => {
-   setIsHover(index);
-   // Additional logic if needed...
- };
-  const handleMouseLeave = () => {
-      setIsHover(null); 
-  };
-
 
   return (
     <>
@@ -81,55 +68,23 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
           justifyItems={"center"}
           mt={"2rem"}
         >
-          {data.map((item: any, index: number) => (
-            <Link href={`/products/${item.id}`} key={item.id}>
+          {data.map((item: any, id: number) => (
+            <Link
+            //   href={{
+            //     pathname: "/products/productDetailsId",
+            //     query: { id: item?.id },
+            //   }}
+              // href={`../../../app/products/${productDetailsId}`}
+              href={`/products/${item.id}`}
+              key={item.id}
+            >
               <Box
                 background={"white"}
                 padding={"2rem"}
                 boxSizing="border-box"
                 position={"relative"}
               >
-                <Box
-                  height={"15rem"}
-                  width={"15rem"}
-                  mb={"1rem"}
-                  position={"relative"}
-                  overflow={"hidden"}
-                  // onMouseEnter={() => handleMouseEnter(index)}
-                  // onMouseLeave={handleMouseLeave}
-                  // style={{
-                  //   backgroundColor: isHover === index ? "blue" : "transparent",
-                  //   color: isHover ? "white" : "black",
-                  // }}
-                >
-                  <Box
-                    height={"100%"}
-                    width={"100%"}
-                    // backgroundColor={"rgba(217, 215, 215, 0.66)"}
-                    position={"absolute"}
-                    zIndex={"99"}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                    style={{
-                      backgroundColor:
-                        isHover === index
-                          ? "rgba(217, 215, 215, 0.66)"
-                          : "transparent",
-                      color: isHover ? "white" : "black",
-                      
-                    }}
-                    // style={{
-                    //   backgroundColor: isHover ? "blue" : "transparent",
-                    //   color: isHover ? "white" : "black",
-                    // }}
-
-                    // _hover={{
-                    //   transform: "scale(1.1)", // Zoom in on hover
-                    //   transition: "transform 0.3s ease-in-out", // Smooth transition effect
-                    // }}
-                  >
-
-                  </Box>
+                <Box height={"15rem"} mb={"1rem"}>
                   <Image
                     src={item.image}
                     alt="Product image"
@@ -138,11 +93,6 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                     overflow={"hidden"}
                     width={"100%"}
                     height={"13rem"}
-                    style={{
-                      transform: isHover === index ? "scale(1.1)" : "",
-                      transition:
-                        isHover === index ? "transform 0.3s ease-in-out" : "",
-                    }}
                   />
                 </Box>
                 <Box

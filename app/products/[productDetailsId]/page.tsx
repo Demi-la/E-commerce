@@ -17,7 +17,7 @@
 // }
 // const ProductDetails: React.FC<ProductDetails> = () => {
 //   let { id } = useParams();
-  
+
 //   // const productId = params?.id;
 //     // const { id: productId } = params || {};
 
@@ -67,24 +67,23 @@
 
 // export default ProductDetails;
 
-
-
 import React from "react";
-import { useGetProductsDetailsQuery } from "../../lib/api";
+import { useGetProductsDetailsQuery } from "../../../lib/api";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { useRouter, useParams } from "next/navigation";
 
-interface ProductDetails {
-  image?: string;
-  title?: string;
-  id: number;
-}
 
-const ProductDetails: React.FC<ProductDetails> = ({id}) => {
+const ProductDetails = ({
+  params
+}: {
+  params: { productDetailsId: number };
+}) => {
   // const { id } = useParams(); // Assuming id is a number
   // const productId = parseInt(id as string, 10); // Convert id to a number
 
-  const { data, error, isLoading } = useGetProductsDetailsQuery(id);
+  const { data, error, isLoading } = useGetProductsDetailsQuery(
+    params.productDetailsId
+  );
 
   console.log("data", data);
   console.log("error", error);

@@ -1,14 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiRequest } from "./api";
+import  productDetailsReducer from "@/features/productDetails/ProductDetailsSlice";
+import cartReducer from "@/features/cart/cartSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       [apiRequest.reducerPath]: apiRequest.reducer,
+      counter: productDetailsReducer,
+      cart: cartReducer,
     },
-        middleware: (getDefaultMiddleware) =>
-          getDefaultMiddleware().concat(apiRequest.middleware),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(apiRequest.middleware),
   });
 };
 

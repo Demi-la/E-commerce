@@ -88,10 +88,18 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                 padding={"2rem"}
                 boxSizing="border-box"
                 position={"relative"}
+                // style={{
+
+                //   padding: isHover ? "0" : "",
+                // }}
+                // height={"20rem"}
+                _hover={{
+                  padding: "0",
+                }}
               >
                 <Box
                   height={"15rem"}
-                  width={"15rem"}
+                  // width={"25rem"}
                   mb={"1rem"}
                   position={"relative"}
                   overflow={"hidden"}
@@ -116,7 +124,6 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                           ? "rgba(217, 215, 215, 0.66)"
                           : "transparent",
                       color: isHover ? "white" : "black",
-                      
                     }}
                     // style={{
                     //   backgroundColor: isHover ? "blue" : "transparent",
@@ -127,12 +134,10 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                     //   transform: "scale(1.1)", // Zoom in on hover
                     //   transition: "transform 0.3s ease-in-out", // Smooth transition effect
                     // }}
-                  >
-
-                  </Box>
+                  ></Box>
                   <Image
                     src={item.image}
-                    alt="Product image"
+                    alt={item.title}
                     position={"relative"}
                     transition={".5s"}
                     overflow={"hidden"}

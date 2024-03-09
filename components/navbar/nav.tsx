@@ -24,6 +24,7 @@ import { FaTimes } from "react-icons/fa";
 // import { Link } from '@chakra-ui/react';
 import SideNav from "./sideNav";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type NavProps = {
   isSidebarOpen: boolean;
@@ -31,6 +32,12 @@ type NavProps = {
 };
 
 const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
+
+   const router = useRouter();
+  const handleNext = () => {
+    router.push("/products/cart");
+  };
+
   const CategoriesMenu = [
     {
       items: "Dresses",
@@ -50,6 +57,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
     { items: "Shoes", url: "/" },
   ];
 
+ 
   return (
     <>
       <Box>
@@ -377,7 +385,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
               </Circle>
             </Flex>
 
-            <Flex gap={"5px"}>
+            <Flex gap={"5px"} onClick={handleNext} cursor={"pointer"}>
               <FaShoppingCart fontSize={"1.3rem"} color="#FFD333" />
               <Circle size="20px" bg="trasparent" border={"1px solid white"}>
                 <Text fontSize={"10px"} color={"white"}>

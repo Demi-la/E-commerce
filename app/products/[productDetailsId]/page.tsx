@@ -38,7 +38,6 @@ const ProductDetails: React.FC<ProductDetailsType> = ({
 }) => {
 
      const count = useAppSelector((state) => state.counter.value);
-     const cartItems = useAppSelector((state) => state.cart.cartItems);
      const dispatch = useAppDispatch();
 
      const [incrementAmount, setIncrementAmount] = useState();

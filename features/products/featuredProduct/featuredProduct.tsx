@@ -8,7 +8,7 @@ import Link from "next/link";
 
 interface FeaturedProductType {
   //
-  productDetailsId: number;
+  productDetailsId?: number;
   index: number;
   
 }

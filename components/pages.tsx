@@ -13,7 +13,7 @@ const Pages = () => {
       {/* <Banner/> */}
       <Box bg={"#f7fafc"}>
         <Categories/>
-        <FeaturedProduct/>
+        <FeaturedProduct index={0}/>
       </Box>
       <Footer/>
     </Box>

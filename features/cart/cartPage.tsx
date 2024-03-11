@@ -38,7 +38,7 @@ const CartPage = () => {
      dispatch(addToCart(cartItem));
    };
    const handleClearCart = () => {
-     dispatch(clearCart());
+     dispatch(clearCart("Cleared"));
    };
   return (
     <Box>

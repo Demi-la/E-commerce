@@ -1,7 +1,13 @@
 "use client";
 import React from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
-import { addToCart, removeProductFromCart } from "@/features/cart/cartSlice";
+import {
+  addToCart,
+  removeProductFromCart,
+  decreaseProductQuantity,
+  clearCart,
+  getTotals,
+} from "@/features/cart/cartSlice";
 import {
   Box,
   Grid,
@@ -24,7 +30,16 @@ const CartPage = () => {
   const dispatch = useAppDispatch();
   const handleRemoveProductFromCart = (cartItem: { title: string; image: string; price: any; cartQuantity: number; id: React.Key | null | undefined; }) => {
       dispatch(removeProductFromCart(cartItem))
-  }
+  };
+  const handleDecreaseFromCart = (cartItem: any) =>{
+    dispatch(decreaseProductQuantity(cartItem));
+  };
+  const handleIncreaseFromCart = (cartItem: any) => {
+     dispatch(addToCart(cartItem));
+   };
+   const handleClearCart = () => {
+     dispatch(clearCart());
+   };
   return (
     <Box>
       <Box padding={"2rem 4rem"}>
@@ -32,11 +47,13 @@ const CartPage = () => {
           Your Cart
         </Text>
         {cart.cartItems.length === 0 ? (
-          <Box>
-            <Text>Your cart is Currently Empty</Text>
-            <Link href={"/"}>
-              {" "}
-              <Text cursor={"pointer"}>Start Shopping</Text>{" "}
+          <Box textAlign={"center"}>
+            <Text mt={"2rem"}>Your cart is Currently Empty</Text>
+            <Link href={"/"}  >
+              <Text display={"flex"} mt={"0.5rem"} cursor={"pointer"} justifyContent={"center"}>
+                <GoArrowLeft style={{ marginTop: "4px" }} />{" "}
+                <Text as={"span"}>Continue shopping</Text>
+              </Text>
             </Link>
           </Box>
         ) : (
@@ -85,7 +102,12 @@ const CartPage = () => {
                       />
                       <Box>
                         <Text>{cartItem.title}</Text>
-                        <Button mt={"0.5rem"} onClick={() => handleRemoveProductFromCart(cartItem)}>Remove</Button>
+                        <Button
+                          mt={"0.5rem"}
+                          onClick={() => handleRemoveProductFromCart(cartItem)}
+                        >
+                          Remove
+                        </Button>
                       </Box>
                     </Flex>
                     <Box>
@@ -97,7 +119,7 @@ const CartPage = () => {
                           borderRightRadius={"none"}
                           backgroundColor={"transparent"}
                           border={"1px solid #E2E8F0"}
-                          // onClick={() => dispatch(decrement())}
+                          onClick={() => handleDecreaseFromCart(cartItem)}
                         >
                           -
                         </Button>
@@ -112,7 +134,7 @@ const CartPage = () => {
                           backgroundColor={"transparent"}
                           border={"1px solid #E2E8F0"}
                           borderLeftRadius={"none"}
-                          // onClick={() => dispatch(increment())}
+                          onClick={() => handleIncreaseFromCart(cartItem)}
                         >
                           +
                         </Button>
@@ -128,7 +150,7 @@ const CartPage = () => {
               borderTop={"1px solid gray"}
               paddingTop={"2rem"}
             >
-              <Button>Clear Cart </Button>
+              <Button onClick={() => handleClearCart()}>Clear Cart </Button>
               <Box>
                 <Flex fontWeight={"500"} fontFamily={"14px"}>
                   <Text>Subtotal </Text>
@@ -146,7 +168,8 @@ const CartPage = () => {
                 </Button>
                 <Link href={"/"}>
                   <Text display={"flex"} mt={"0.5rem"}>
-                    <GoArrowLeft style={{marginTop: "4px"}}/> <Text as={"span"}>Continue shopping</Text>
+                    <GoArrowLeft style={{ marginTop: "4px" }} />{" "}
+                    <Text as={"span"}>Continue shopping</Text>
                   </Text>
                 </Link>
               </Box>

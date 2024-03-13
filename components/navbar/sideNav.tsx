@@ -9,7 +9,6 @@ import {
   Button,
 } from '@chakra-ui/react';
 import React from 'react';
-
 import { IoIosArrowDown } from 'react-icons/io';
 // import './sidenav.css';
 
@@ -33,10 +32,6 @@ const SideNav:React.FC<SideNavProps> = ({ isSidebarOpen, toggleSideBar }) => {
         bg={isSidebarOpen ? "#3D464D" : "transparent"}
         style={sideNavStyles}
       >
-        {/* <Button className="close-btn" onClick={() => setSidemenuOpen(!isSidemenuOpen)}>
-  {isSidebarOpen ? <FaTimes /> : <FcMenu />}  
-     </Button> */}
-
         {isSidebarOpen && (
           <List
             display={"flex"}

@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer';
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,14 +18,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
   return (
     <html lang="en">
-      {/* <body className={inter.className}>{children}</body> */}
+
       <body>
         {" "}
-        {/* <Navbar/> */}
-        <Providers>{children}</Providers>
-        {/* <Footer/> */}
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

@@ -7,14 +7,7 @@ const Navbar = () => {
 
   const toggleSideBar = () => {
     setSidebarOpen(!isSidebarOpen);
-
-    //   console.log('Sidebar is now:', isSidebarOpen ? 'open' : 'close');
   };
-
-  // useEffect(() => {
-  //     console.log('Sidebar is now:', isSidebarOpen ? 'Open' : 'Closed');
-  //   }, [isSidebarOpen]);
-
   return (
     <>
       <Nav isSidebarOpen={isSidebarOpen} toggleSideBar={toggleSideBar} />

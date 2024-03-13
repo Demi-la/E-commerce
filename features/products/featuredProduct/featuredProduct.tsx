@@ -7,21 +7,15 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface FeaturedProductType {
-  //
   productDetailsId?: number;
   index: number;
-  
 }
 
 const FeaturedProduct: React.FC<FeaturedProductType> = () => {
-
   const [isHover, setIsHover] = useState<number | null>(null);
 
   const router = useRouter();
   const { data, error, isLoading } = useGetProductQuery("");
-  //  console.log("data =========================", data);
-  //  console.log("error", error);
-  //  console.log("isLoading", isLoading);
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -33,15 +27,13 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
   if (data == null || data == undefined) {
     return <div>No data available</div>;
   }
-  
- const handleMouseEnter = (index: number) => {
-   setIsHover(index);
-   // Additional logic if needed...
- };
-  const handleMouseLeave = () => {
-      setIsHover(null); 
-  };
 
+  const handleMouseEnter = (index: number) => {
+    setIsHover(index);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(null);
+  };
 
   return (
     <>

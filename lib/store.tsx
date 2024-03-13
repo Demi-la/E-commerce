@@ -1,14 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiRequest } from "./api";
-import  productDetailsReducer from "@/features/productDetails/ProductDetailsSlice";
 import cartReducer from "@/features/cart/cartSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       [apiRequest.reducerPath]: apiRequest.reducer,
-      counter: productDetailsReducer,
       cart: cartReducer,
     },
     middleware: (getDefaultMiddleware) =>
@@ -17,7 +15,7 @@ export const makeStore = () => {
 };
 
 
-
+// store.dispatch(getTotals());
 export const store = makeStore();
 setupListeners(store.dispatch);
 // Infer the type of makeStore

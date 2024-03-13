@@ -21,10 +21,10 @@ import { FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FcMenu } from "react-icons/fc";
 import { FaTimes } from "react-icons/fa";
-// import { Link } from '@chakra-ui/react';
 import SideNav from "./sideNav";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/lib/hooks";
 
 type NavProps = {
   isSidebarOpen: boolean;
@@ -37,6 +37,9 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
   const handleNext = () => {
     router.push("/products/cart");
   };
+  const handleHome = () => {
+    router.push("/")
+  }
 
   const CategoriesMenu = [
     {
@@ -57,7 +60,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
     { items: "Shoes", url: "/" },
   ];
 
- 
+ const { cartTotalQuantity } = useAppSelector((state) => state.cart);
   return (
     <>
       <Box>
@@ -194,7 +197,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
 
         <Flex display={{ base: "none", md: "flex", lg: "flex" }}>
           <Box mt={"1rem"} ml={"4rem"}>
-            <Text>
+            <Text onClick={handleHome} cursor={"pointer"}>
               <Text
                 as="span"
                 color={"#FFD333"}
@@ -217,17 +220,12 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
             </Text>
           </Box>
           <Box mx={"auto"} w={"25%"} mt={"1rem"}>
-            <form
-              //   onSubmit={handleSubmit}
-              autoComplete="off"
-              style={{ display: "flex" }}
-              // w={{ base: "90%", lg: "30rem" }}
-            >
+            <form autoComplete="off" style={{ display: "flex" }}>
               <InputGroup w={"100%"}>
                 <Input
                   type="text"
-                  name="ipaddress"
-                  id="ipaddress"
+                  name="search"
+                  id="search"
                   placeholder="Search for products"
                   required
                   //   value={ipAddress}
@@ -321,7 +319,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
               color={"white"}
               fontSize={{ base: "10px", md: "15px", lg: "15px" }}
             >
-              <ListItem>Home</ListItem>
+              <ListItem onClick={handleHome} cursor={"pointer"}>Home</ListItem>
               <ListItem>Shop</ListItem>
               <ListItem>Shop Details</ListItem>
               <Menu>
@@ -367,7 +365,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
           <Flex
             position={"relative"}
             left={"-3.5rem"}
-            mt={"0.7rem"}
+            mt={"1.2rem"}
             gap={"1rem"}
             display={{ base: "none", md: "flex", lg: "flex" }}
           >
@@ -389,7 +387,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
               <FaShoppingCart fontSize={"1.3rem"} color="#FFD333" />
               <Circle size="20px" bg="trasparent" border={"1px solid white"}>
                 <Text fontSize={"10px"} color={"white"}>
-                  0
+                  {cartTotalQuantity}
                 </Text>
               </Circle>
             </Flex>

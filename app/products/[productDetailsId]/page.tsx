@@ -1,63 +1,35 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useGetProductsDetailsQuery } from "../../../lib/api";
 import {
   Box,
   Flex,
   Grid,
   Image,
-  Input,
   Text,
   Select,
   Button,
-  Stack,
-  InputGroup,
 } from "@chakra-ui/react";
-import { useSelector, useDispatch } from "react-redux";
-import Navbar from "@/components/navbar/navbar";
-import Footer from "@/components/footer";
 import { FaLock } from "react-icons/fa";
-import {
-  increment,
-  decrement,
-  incrementByAmount,
-} from "@/features/productDetails/ProductDetailsSlice";
-import { RootState } from "@/lib/store";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { addToCart } from "@/features/cart/cartSlice";
 
 interface ProductDetailsType {
   params: { productDetailsId: number };
 }
-
 const ProductDetails: React.FC<ProductDetailsType> = ({
   params,
 }: {
   params: { productDetailsId: number };
 }) => {
-
-     const count = useAppSelector((state) => state.counter.value);
-     const dispatch = useAppDispatch();
-
-     const [incrementAmount, setIncrementAmount] = useState();
-     const addValue = Number(incrementAmount) || 0;
-    //  const resetAll = () => {
-    //    setIncrementAmount(0);
-    //    dispatch(reset());
-    //  };
-    const handleAddToCart = (data: any) => {
-            dispatch(addToCart(data));
-    }
-
+  const dispatch = useAppDispatch();
+  const handleAddToCart = (data: any) => {
+    dispatch(addToCart(data));
+  };
   const { data, error, isLoading } = useGetProductsDetailsQuery(
     params.productDetailsId
   );
-
-  console.log("data", data);
-  console.log("error", error);
-  console.log("isLoading", isLoading);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -72,7 +44,6 @@ const ProductDetails: React.FC<ProductDetailsType> = ({
 
   return (
     <>
-      <Navbar />
       <Box width={"100%"}>
         <Box boxSizing={"border-box"} width={"80%"} margin={"auto"}>
           <Grid
@@ -147,33 +118,6 @@ const ProductDetails: React.FC<ProductDetailsType> = ({
                   <option value="medium">Medium</option>
                   <option value="large">Large</option>
                 </Select>
-                <Stack spacing={4} width={"10rem"}>
-                  <InputGroup>
-                    <Button
-                      borderRightRadius={"none"}
-                      backgroundColor={"transparent"}
-                      border={"1px solid #E2E8F0"}
-                      onClick={() => dispatch(decrement())}
-                    >
-                      -
-                    </Button>
-                    <Input
-                      type="text"
-                      placeholder="1"
-                      borderRadius={"none"}
-                      value={count}
-                    />
-
-                    <Button
-                      backgroundColor={"transparent"}
-                      border={"1px solid #E2E8F0"}
-                      borderLeftRadius={"none"}
-                      onClick={() => dispatch(increment())}
-                    >
-                      +
-                    </Button>
-                  </InputGroup>
-                </Stack>
               </Flex>
               <Flex gap={"2rem"} mt={"2rem"}>
                 <Button backgroundColor={"#FFD333"}>BUY NOW</Button>
@@ -188,7 +132,6 @@ const ProductDetails: React.FC<ProductDetailsType> = ({
           </Grid>
         </Box>
       </Box>
-      <Footer />
     </>
   );
 };

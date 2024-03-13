@@ -9,13 +9,13 @@ import Footer from './footer'
 const Pages = () => {
   return (
     <Box>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* <Banner/> */}
       <Box bg={"#f7fafc"}>
         <Categories/>
         <FeaturedProduct index={0}/>
       </Box>
-      <Footer/>
+      {/* <Footer/> */}
     </Box>
   );
 }

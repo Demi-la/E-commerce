@@ -4,12 +4,13 @@ import CartPage from '@/features/cart/cartPage';
 import React from 'react'
 
 
-const cart = () => {
-  return <div>
-    <Navbar/>
-    <CartPage/>
-    <Footer/>
-    </div>;
-};
-
-export default cart
+const Cart = () => {
+  return (
+    <div>
+      {/* <Navbar /> */}
+      <CartPage/>
+      {/* <Footer/> */}
+    </div>
+  );
+}
+export default Cart

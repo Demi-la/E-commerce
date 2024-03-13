@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import {
   addToCart,
   removeProductFromCart,
   decreaseProductQuantity,
   clearCart,
-  getTotals,
+  cartTotals,
 } from "@/features/cart/cartSlice";
 import {
   Box,
@@ -22,24 +22,32 @@ import {
 import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
 
-
-
-
 const CartPage = () => {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  const handleRemoveProductFromCart = (cartItem: { title: string; image: string; price: any; cartQuantity: number; id: React.Key | null | undefined; }) => {
-      dispatch(removeProductFromCart(cartItem))
+
+  useEffect(() => {
+    dispatch(cartTotals(""));
+  }, [cart, dispatch]);
+
+  const handleRemoveProductFromCart = (cartItem: {
+    title: string;
+    image: string;
+    price: any;
+    cartQuantity: number;
+    id: React.Key | null | undefined;
+  }) => {
+    dispatch(removeProductFromCart(cartItem));
   };
-  const handleDecreaseFromCart = (cartItem: any) =>{
+  const handleDecreaseFromCart = (cartItem: any) => {
     dispatch(decreaseProductQuantity(cartItem));
   };
   const handleIncreaseFromCart = (cartItem: any) => {
-     dispatch(addToCart(cartItem));
-   };
-   const handleClearCart = () => {
-     dispatch(clearCart("Cleared"));
-   };
+    dispatch(addToCart(cartItem));
+  };
+  const handleClearCart = () => {
+    dispatch(clearCart("Cleared"));
+  };
   return (
     <Box>
       <Box padding={"2rem 4rem"}>
@@ -49,8 +57,13 @@ const CartPage = () => {
         {cart.cartItems.length === 0 ? (
           <Box textAlign={"center"}>
             <Text mt={"2rem"}>Your cart is Currently Empty</Text>
-            <Link href={"/"}  >
-              <Text display={"flex"} mt={"0.5rem"} cursor={"pointer"} justifyContent={"center"}>
+            <Link href={"/"}>
+              <Text
+                display={"flex"}
+                mt={"0.5rem"}
+                cursor={"pointer"}
+                justifyContent={"center"}
+              >
                 <GoArrowLeft style={{ marginTop: "4px" }} />{" "}
                 <Text as={"span"}>Continue shopping</Text>
               </Text>
@@ -71,11 +84,7 @@ const CartPage = () => {
               <Text>Quantity</Text>
               <Text>Total</Text>
             </Grid>
-            <Grid
-            // gridTemplateColumns={"3fr 1fr 1fr 1fr"}
-            // alignItems={"center"}
-            // columnGap={"0.5rem"}
-            >
+            <Grid>
               {cart.cartItems?.map(
                 (cartItem: {
                   title: string;
@@ -152,9 +161,13 @@ const CartPage = () => {
             >
               <Button onClick={() => handleClearCart()}>Clear Cart </Button>
               <Box>
-                <Flex fontWeight={"500"} fontFamily={"14px"}>
+                <Flex
+                  fontWeight={"500"}
+                  fontFamily={"14px"}
+                  justifyContent={"space-between"}
+                >
                   <Text>Subtotal </Text>
-                  {/* <Text>{item?.cartQuantity} </Text> */}
+                  <Text>${cart?.cartTotalAmount} </Text>
                 </Flex>
                 <Text>Taxes and shipping calculated at checkout </Text>
                 <Button

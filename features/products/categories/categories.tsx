@@ -1,14 +1,16 @@
 "use client";
-import { Box, Flex, Grid, Text,Image } from "@chakra-ui/react";
+import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
 import React from "react";
 import { CategoriesData } from "./data";
-
-// import styled from "@emotion/styled";
 
 const Categories = () => {
   return (
     <>
-      <Box p={{ base: "1rem", md: "1rem", lg: "3rem" }} width={"100%"} overflow={"hidden"}>
+      <Box
+        p={{ base: "1rem", md: "1rem", lg: "3rem" }}
+        width={"100%"}
+        overflow={"hidden"}
+      >
         <Box>
           <Flex
             flexDirection="row"
@@ -47,41 +49,23 @@ const Categories = () => {
                 h={"6rem"}
                 paddingLeft={"1rem"}
                 background={"white"}
-                // px={"3rem"}
-                // overflow={"hidden"}
                 mt={"1rem"}
-                // position={"relative"}
               >
-                <Flex
-                  //   mt={"1rem"}
-                  //   position={"relative"}
-                  //   justifyContent={"space-between"}
-                  _hover={{
-                    // transform: "scale(1)",
-                    // rotate: "(5deg)",
-                    // transition: "transform 0.5s ease-in-out",
-                    // backgroundColor: "yellow",
-                  }}
-                >
+                <Flex _hover={{}}>
                   <Box
-                    // height={"auto"}
-                    // objectFit={"cover"}
-                    // transition={".5s"}
-                    // mt={"1rem"}
                     width={"7rem"}
-                    // position={"absolute"}
                     _hover={{
                       transform: "scale(1.1)", // Zoom in on hover
                       transition: "transform 0.3s ease-in-out", // Smooth transition effect
                     }}
                   >
-                    <Image src={item.photo} alt="product image"  height={"80%"}/>
+                    <Image
+                      src={item.photo}
+                      alt="product image"
+                      height={"80%"}
+                    />
                   </Box>
-                  <Box
-                  // _hover={{
-                  //   backgroundColor: "yellow",
-                  // }}
-                  >
+                  <Box>
                     <Text
                       fontWeight={"500"}
                       color={"#3D464D"}

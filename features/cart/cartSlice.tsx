@@ -4,20 +4,23 @@ import { toast } from "react-toastify";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 interface AppState {
-  cartItems: { id: number; title: string; cartQuantity: number }[]; // Adjust type as per your actual state structure
+  cartItems: { id: number; title: string; cartQuantity: number }[];
+  cartTotalQuantity: number;
+  cartTotalAmount:number;
+  
 }
 type CartItem = {
   id: number;
   cartQuantity: number;
 };
 
-const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
-const initialCartItems =
- cartItemsFromLocalStorage
-  ? JSON.parse(cartItemsFromLocalStorage)
-  : [];
-const initialState = {
-  cartItems: initialCartItems,
+// const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
+// const initialCartItems =
+//  cartItemsFromLocalStorage
+//   ? JSON.parse(cartItemsFromLocalStorage)
+//   : [];
+const initialState: AppState = {
+  cartItems: [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };
@@ -42,18 +45,18 @@ export const cartSlice = createSlice({
           position: "top-right",
         });
       }
-        // if (typeof window !== "undefined") {
-        //   localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-        // }
+      // if (typeof window !== "undefined") {
+      //   localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      // }
     },
     removeProductFromCart(state, action) {
       const productToRemove = action.payload.id;
       const updatedCartItems = state.cartItems.filter(
         (cartItem: { id: any }) => cartItem.id !== productToRemove
       );
-        // if (typeof window !== "undefined") {
-        //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-        // }
+      // if (typeof window !== "undefined") {
+      //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+      // }
       toast.error(`${action.payload.title} Removed from cart`, {
         position: "top-right",
       });
@@ -73,33 +76,23 @@ export const cartSlice = createSlice({
         );
         state.cartItems = NoCartItem;
       }
-        // if (typeof window !== "undefined") {
-        //   localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-        // }
+      // if (typeof window !== "undefined") {
+      //   localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      // }
     },
-    cartTotals(state, action) {
-      let { total, quantity } = state.cartItems.reduce(
-        (
-          cartTotal: { total: number; quantity: any },
-          cartItem: { price: any; cartQuantity: any }
-        ) => {
-          const { price, cartQuantity } = cartItem;
-          const itemTotal = price * cartQuantity;
-
-          cartTotal.total += itemTotal;
-          cartTotal.quantity += cartQuantity;
-
+    cartTotals(state) {
+      const { total, quantity } = state.cartItems.reduce(
+        (cartTotal, cartItem) => {
+          cartTotal.total += cartItem.cartQuantity; // Assuming cartItem.cartQuantity represents the price of each item
+          cartTotal.quantity += 1; // Increment quantity by 1 for each item
           return cartTotal;
         },
-        {
-          total: 0,
-          quantity: 0,
-        }
+        { total: 0, quantity: 0 } // Initial values for total and quantity
       );
-      total = parseFloat(total.toFixed(2));
       state.cartTotalQuantity = quantity;
       state.cartTotalAmount = total;
     },
+   
 
     clearCart(state, action) {
       state.cartItems = [];

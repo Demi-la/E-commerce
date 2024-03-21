@@ -13,7 +13,7 @@ type CartItem = {
 
 const cartItemsFromLocalStorage = 
   typeof window !== "undefined" ? localStorage.getItem("cartItems") : null;
-  localStorage.getItem("cartItems");
+  // localStorage.getItem("cartItems");
 const initialCartItems =
  cartItemsFromLocalStorage
   ? JSON.parse(cartItemsFromLocalStorage)

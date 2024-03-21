@@ -177,7 +177,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
               </Circle>
             </Flex>
 
-            <Flex gap={"5px"}>
+            <Flex gap={"5px"} onClick={handleNext} cursor={"pointer"}>
               <FaShoppingCart fontSize={"1.3rem"} />
               <Circle
                 size="20px"
@@ -185,7 +185,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
                 outline={"blue"}
                 border={"1px solid black"}
               >
-                <Text fontSize={"10px"}>0</Text>
+                <Text fontSize={"10px"}> {cartTotalQuantity}</Text>
               </Circle>
             </Flex>
           </Flex>
@@ -319,7 +319,9 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
               color={"white"}
               fontSize={{ base: "10px", md: "15px", lg: "15px" }}
             >
-              <ListItem onClick={handleHome} cursor={"pointer"}>Home</ListItem>
+              <ListItem onClick={handleHome} cursor={"pointer"}>
+                Home
+              </ListItem>
               <ListItem>Shop</ListItem>
               <ListItem>Shop Details</ListItem>
               <Menu>

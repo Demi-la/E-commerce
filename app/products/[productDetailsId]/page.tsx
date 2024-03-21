@@ -45,9 +45,9 @@ const ProductDetails: React.FC<ProductDetailsType> = ({
   return (
     <>
       <Box width={"100%"}>
-        <Box boxSizing={"border-box"} width={"80%"} margin={"auto"}>
+        <Box boxSizing={"border-box"} width={{base: "100%", lg:"80%"}} margin={"auto"}>
           <Grid
-            gridTemplateColumns={"30% 70%"}
+            gridTemplateColumns={{ base: "100%", md: "30% 70%", lg: "30% 70%" }}
             padding={"2rem"}
             gap={"3rem"}
             color={"#6c757d"}
@@ -103,7 +103,7 @@ const ProductDetails: React.FC<ProductDetailsType> = ({
                 </Text>{" "}
                 {data?.price}
               </Text>
-              <Text mt={"0.5rem"} paddingRight={"8rem"}>
+              <Text mt={"0.5rem"} paddingRight={{base: "1rem", lg:"8rem"}}>
                 {data?.description}
               </Text>
               <Text mt={"0.5rem"}>

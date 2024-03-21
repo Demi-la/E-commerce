@@ -1,24 +1,24 @@
-import { RootState } from "@/lib/store";
+
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { PayloadAction } from "@reduxjs/toolkit";
+
 
 interface AppState {
-  cartItems: { id: number; title: string; cartQuantity: number }[]; // Adjust type as per your actual state structure
+  cartItems: { id: number; title: string; cartQuantity: number }[]; 
 }
 type CartItem = {
   id: number;
   cartQuantity: number;
 };
 
-const cartItemsFromLocalStorage =
-  typeof window !== "undefined" ? localStorage.getItem("cartItems") : null;
+const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
+  // typeof window !== "undefined" ? localStorage.getItem("cartItems") : null;
 const initialCartItems =
  cartItemsFromLocalStorage
   ? JSON.parse(cartItemsFromLocalStorage)
   : [];
 const initialState = {
-  cartItems: initialCartItems,
+  cartItems: initialCartItems ,
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
 };

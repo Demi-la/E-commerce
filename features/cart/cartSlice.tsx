@@ -11,8 +11,9 @@ type CartItem = {
   cartQuantity: number;
 };
 
-const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
-  // typeof window !== "undefined" ? localStorage.getItem("cartItems") : null;
+const cartItemsFromLocalStorage = 
+  typeof window !== "undefined" ? localStorage.getItem("cartItems") : null;
+  localStorage.getItem("cartItems");
 const initialCartItems =
  cartItemsFromLocalStorage
   ? JSON.parse(cartItemsFromLocalStorage)

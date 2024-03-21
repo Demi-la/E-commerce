@@ -52,9 +52,9 @@ export const cartSlice = createSlice({
       const updatedCartItems = state.cartItems.filter(
         (cartItem: { id: any }) => cartItem.id !== productToRemove
       );
-        // if (typeof window !== "undefined") {
-        //   localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-        // }
+        if (typeof window !== "undefined") {
+          localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+        }
       toast.error(`${action.payload.title} Removed from cart`, {
         position: "top-right",
       });

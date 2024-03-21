@@ -41,14 +41,18 @@ export const cartSlice = createSlice({
           position: "top-right",
         });
       }
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        }
     },
     removeProductFromCart(state, action) {
       const productToRemove = action.payload.id;
       const updatedCartItems = state.cartItems.filter(
         (cartItem: { id: any }) => cartItem.id !== productToRemove
       );
-      localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+        }
       toast.error(`${action.payload.title} Removed from cart`, {
         position: "top-right",
       });
@@ -68,7 +72,9 @@ export const cartSlice = createSlice({
         );
         state.cartItems = NoCartItem;
       }
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+        }
     },
     cartTotals(state, action) {
       let { total, quantity } = state.cartItems.reduce(
@@ -99,7 +105,9 @@ export const cartSlice = createSlice({
       toast.error("Cart cleared", {
         position: "top-right",
       });
-      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      }
     },
   },
 });

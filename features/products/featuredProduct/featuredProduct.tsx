@@ -78,7 +78,7 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
               <Box
                 background={"white"}
                 padding={"2rem"}
-                boxSizing="border-box"
+                // boxSizing="border-box"
                 position={"relative"}
                 // style={{
 

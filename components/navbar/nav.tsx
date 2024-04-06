@@ -63,7 +63,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
  const { cartTotalQuantity } = useAppSelector((state) => state.cart);
   return (
     <>
-      <Box>
+      <Box overflow={"hidden"}>
         {/*********************************************first nav bar start*****************************88*************/}
         <Flex
           justifyContent={"space-between"}
@@ -403,7 +403,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
           display={{ base: "flex", md: "none", lg: "none" }}
         >
           <Box mt={"1rem"} ml={"1rem"}>
-            <Text>
+            <Text onClick={handleHome}>
               <Text
                 as="span"
                 color={"#3D464D"}

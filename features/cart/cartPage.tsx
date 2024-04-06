@@ -18,27 +18,35 @@ import {
   Input,
   Stack,
   InputGroup,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+  HStack,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
+import "./cart.css";
 
 const CartPage = () => {
   const cart = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
-    
-
   useEffect(() => {
     dispatch(cartTotals(""));
   }, [cart, dispatch]);
 
-    useEffect(() => {
-      const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
-      if (cartItemsFromLocalStorage) {
-        const parsedCartItems = JSON.parse(cartItemsFromLocalStorage);
-      }
-    
-    }, [dispatch ]);
+  useEffect(() => {
+    const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
+    if (cartItemsFromLocalStorage) {
+      const parsedCartItems = JSON.parse(cartItemsFromLocalStorage);
+    }
+  }, [dispatch]);
 
   const handleRemoveProductFromCart = (cartItem: {
     title: string;
@@ -58,12 +66,10 @@ const CartPage = () => {
   const handleClearCart = () => {
     dispatch(clearCart("Cleared"));
   };
- 
-
 
   return (
     <>
-      <Box>
+      <Box overflow={"hidden"}>
         <Box padding={{ base: "2rem 2rem", lg: "2rem 4rem" }}>
           <Text textAlign={"center"} fontWeight={"500"} fontSize={"30px"}>
             Your Cart
@@ -85,110 +91,105 @@ const CartPage = () => {
             </Box>
           ) : (
             <Box>
-              <Grid
-                gridTemplateColumns={"3fr 1fr 1fr 1fr"}
-                alignItems={"center"}
-                columnGap={"0.5rem"}
-                margin={"2rem 0 1rem 0"}
-                fontSize={"14px"}
-                fontWeight={"400"}
-                // display={{ base: "hidden", lg: "grid" }}
-              >
-                <Text>Product</Text>
-                <Text>Price</Text>
-                <Text>Quantity</Text>
-                <Text>Total</Text>
-              </Grid>
-              
-              <Grid>
-                {cart.cartItems?.map(
-                  (cartItem: {
-                    title: string;
-                    image: string;
-                    price: any;
-                    cartQuantity: number;
-                    id: number;
-                  }) => (
-                    <Grid
-                      key={cartItem.id}
-                      gridTemplateColumns={{
-                        base: " 1fr 1fr",
-                        lg: "3fr 1fr 1fr 1fr",
-                      }}
-                      gridColumnGap={{ base: "5rem" }}
-                      alignItems={"center"}
-                      columnGap={"0.5rem"}
-                      borderTop={"1px solid gray"}
-                      padding={"1rem 0"}
-                    >
-                      <Flex>
-                        <Image
-                          src={cartItem.image}
-                          alt={cartItem.title}
-                          height={"5rem"}
-                          width={"5rem"}
-                          mr={"1rem"}
-                        />
-                        <Box>
-                          <Text fontSize={{ base: "12px", lg: "16px" }}>
-                            {cartItem.title}
-                          </Text>
-                          <Button
-                            mt={"0.5rem"}
-                            mb={{ base: "1rem" }}
-                            onClick={() =>
-                              handleRemoveProductFromCart(cartItem)
-                            }
-                          >
-                            Remove
-                          </Button>
-                        </Box>
-                      </Flex>
-                      <Box>
-                        <Text>${cartItem.price}</Text>
-                      </Box>
-                      <Stack spacing={4} width={"10rem"}>
-                        <InputGroup>
-                          <Button
-                            borderRightRadius={"none"}
-                            backgroundColor={"transparent"}
-                            border={"1px solid #E2E8F0"}
-                            onClick={() => handleDecreaseFromCart(cartItem)}
-                          >
-                            -
-                          </Button>
-                          <Input
-                            type="text"
-                            placeholder="1"
-                            borderRadius={"none"}
-                            value={cartItem?.cartQuantity}
+              <Table variant="unstyled">
+                <Thead>
+                  <Tr borderBottom={"1px solid #dddddd"}>
+                    <Th>Product</Th>
+                    <Th>Price</Th>
+                    <Th>Quantity</Th>
+                    <Th>Total</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {cart.cartItems?.map(
+                    (cartItem: {
+                      title: string;
+                      image: string;
+                      price: any;
+                      cartQuantity: number;
+                      id: number;
+                    }) => (
+                      <Tr key={cartItem.id} borderTop={" 1px solid #dddddd;"}>
+                        <Td
+                          data-label="Product: "
+                          style={{ display: "flex", alignItems: "center" }}
+                        >
+                          <Image
+                            src={cartItem.image}
+                            alt={cartItem.title}
+                            height={"5rem"}
+                            width={"5rem"}
+                            mr={"1rem"}
                           />
+                          <Box>
+                            <Text fontSize={{ base: "12px", lg: "sm" }}>
+                              {cartItem.title}
+                            </Text>
+                            <Button
+                              size="xs"
+                              mt="0.5rem"
+                              onClick={() =>
+                                handleRemoveProductFromCart(cartItem)
+                              }
+                            >
+                              Remove
+                            </Button>
+                          </Box>
+                        </Td>
 
-                          <Button
-                            backgroundColor={"transparent"}
-                            border={"1px solid #E2E8F0"}
-                            borderLeftRadius={"none"}
-                            onClick={() => handleIncreaseFromCart(cartItem)}
-                          >
-                            +
-                          </Button>
-                        </InputGroup>
-                      </Stack>
-                      <Text>${cartItem.price * cartItem.cartQuantity}</Text>
-                    </Grid>
-                  )
-                )}
-              
-              </Grid>
-            
+                        <Td data-label="price: ">${cartItem.price}</Td>
+                        <Td
+                          data-label="Quantity:"
+                          display={{ base: " flex", md: "block", lg: "block" }}
+                          position={"relative"}
+                          top={{ base: "0", md: "-1.5rem", lg: "-1.5rem" }}
+                        >
+                          <Stack width={"10rem"}>
+                            <InputGroup>
+                              <Button
+                                borderRightRadius={"none"}
+                                backgroundColor={"transparent"}
+                                border={"1px solid #E2E8F0"}
+                                onClick={() => handleDecreaseFromCart(cartItem)}
+                              >
+                                -
+                              </Button>
+                              <Input
+                                type="text"
+                                placeholder="1"
+                                borderRadius={"none"}
+                                value={cartItem?.cartQuantity}
+                              />
+
+                              <Button
+                                backgroundColor={"transparent"}
+                                border={"1px solid #E2E8F0"}
+                                borderLeftRadius={"none"}
+                                onClick={() => handleIncreaseFromCart(cartItem)}
+                              >
+                                +
+                              </Button>
+                            </InputGroup>
+                          </Stack>
+                        </Td>
+                        <Td data-label="Total: ">
+                          ${cartItem.price * cartItem.cartQuantity}
+                        </Td>
+                      </Tr>
+                    )
+                  )}
+                </Tbody>
+              </Table>
+
               <Flex
                 justifyContent={"space-between"}
                 borderTop={"1px solid gray"}
                 paddingTop={"2rem"}
                 flexDirection={{ base: "column", lg: "row" }}
+                w={"100%"}
               >
                 <Button onClick={() => handleClearCart()}>Clear Cart </Button>
-                <Box>
+                <Box mt={"1.5rem"}>
                   <Flex
                     fontWeight={"500"}
                     fontFamily={"14px"}
@@ -204,6 +205,7 @@ const CartPage = () => {
                     backgroundColor={"#FFD333"}
                     fontSize={"16px"}
                     mt={"0.5rem"}
+                    w={"100%"}
                   >
                     Check out
                   </Button>

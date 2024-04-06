@@ -1,0 +1,33 @@
+@media (max-width: 650px) {
+  Table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  Th {
+    display: none;
+    /* border: none; */
+  }
+  Tr {
+    
+     border-top: 1px solid #dddddd;
+  }
+
+  Td {
+    display: block;
+    border: none;
+   
+  }
+  Td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 0.5rem;
+  }
+  td[data-label="Product: "]::before {
+    content: "Product:";
+    position: relative;
+    top: -2rem;
+  }
+
+}

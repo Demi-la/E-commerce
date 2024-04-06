@@ -1,16 +1,15 @@
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar/navbar';
 import CartPage from '@/features/cart/cartPage';
+import { Box } from '@chakra-ui/react';
 import React from 'react'
 
 
 const Cart = () => {
   return (
-    <div>
-      {/* <Navbar /> */}
+    <Box overflow={"hidden"}>
       <CartPage/>
-      {/* <Footer/> */}
-    </div>
+    </Box>
   );
 }
 export default Cart

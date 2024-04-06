@@ -75,37 +75,16 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
         >
           {data.map((item: any, index: number) => (
             <Link href={`/products/${item.id}`} key={item.id}>
-              <Box
-                background={"white"}
-                padding={"2rem"}
-                // boxSizing="border-box"
-                position={"relative"}
-                // style={{
-
-                //   padding: isHover ? "0" : "",
-                // }}
-                // height={"20rem"}
-                _hover={{
-                  padding: "0",
-                }}
-              >
+              <Box background={"white"} width={"18rem"} position={"relative"}>
                 <Box
                   height={"15rem"}
-                  // width={"25rem"}
                   mb={"1rem"}
                   position={"relative"}
                   overflow={"hidden"}
-                  // onMouseEnter={() => handleMouseEnter(index)}
-                  // onMouseLeave={handleMouseLeave}
-                  // style={{
-                  //   backgroundColor: isHover === index ? "blue" : "transparent",
-                  //   color: isHover ? "white" : "black",
-                  // }}
                 >
                   <Box
                     height={"100%"}
                     width={"100%"}
-                    // backgroundColor={"rgba(217, 215, 215, 0.66)"}
                     position={"absolute"}
                     zIndex={"99"}
                     onMouseEnter={() => handleMouseEnter(index)}
@@ -117,15 +96,6 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                           : "transparent",
                       color: isHover ? "white" : "black",
                     }}
-                    // style={{
-                    //   backgroundColor: isHover ? "blue" : "transparent",
-                    //   color: isHover ? "white" : "black",
-                    // }}
-
-                    // _hover={{
-                    //   transform: "scale(1.1)", // Zoom in on hover
-                    //   transition: "transform 0.3s ease-in-out", // Smooth transition effect
-                    // }}
                   ></Box>
                   <Image
                     src={item.image}
@@ -133,8 +103,13 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                     position={"relative"}
                     transition={".5s"}
                     overflow={"hidden"}
-                    width={"100%"}
+                    width={"13rem"}
                     height={"13rem"}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    margin={"auto"}
+                    mt={"2rem"}
                     style={{
                       transform: isHover === index ? "scale(1.1)" : "",
                       transition:
@@ -145,12 +120,9 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                 <Box
                   boxSizing="border-box"
                   textAlign={"center"}
-                  height={"5rem"}
+                  height={"7rem"}
                   fontWeight={500}
-                  // zIndex={"1"}
-                  // position={"absolute"}
-                  // display={"flex"}
-                  // justifyContent={"center"}
+                  padding={"0rem 1rem 0rem 1rem"}
                   color={"#3D464D"}
                 >
                   <Text mb={"0.5rem"} mt={"0.5rem"} fontSize={"0.8rem"}>

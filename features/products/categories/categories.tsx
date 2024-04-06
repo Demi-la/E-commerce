@@ -1,9 +1,16 @@
 "use client";
 import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
-import React from "react";
+import React,{useState} from "react";
 import { CategoriesData } from "./data";
 
 const Categories = () => {
+    const [isHover, setIsHover] = useState<number | null>(null);
+   const handleMouseEnter = (index: number) => {
+     setIsHover(index);
+   };
+   const handleMouseLeave = () => {
+     setIsHover(null);
+   };
   return (
     <>
       <Box
@@ -25,7 +32,6 @@ const Categories = () => {
               CATEGORIES
             </Text>
             <Box
-              borderTop={"0.2px dashed #3D464D"}
               width={{ base: "65%", md: "80%", lg: "80%" }}
               mt="10px"
               mb="10px"
@@ -47,31 +53,45 @@ const Categories = () => {
                 key={index}
                 w={{ base: "100%", md: "90%", lg: "18rem" }}
                 h={"6rem"}
-                paddingLeft={"1rem"}
                 background={"white"}
                 mt={"1rem"}
+                position={"relative"}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
               >
-                <Flex _hover={{}}>
-                  <Box
-                    width={"7rem"}
-                    _hover={{
-                      transform: "scale(1.1)", // Zoom in on hover
-                      transition: "transform 0.3s ease-in-out", // Smooth transition effect
-                    }}
-                  >
+                <Flex
+                  position={"relative"}
+                  height={"100%"}
+                >
+                  <Box width={"7rem"} overflow={"hidden"}>
                     <Image
                       src={item.photo}
                       alt="product image"
-                      height={"80%"}
+                      height={"100%"}
+                      width={"7rem"}
+                      style={{
+                        transform: isHover === index ? "scale(1.1)" : "",
+                        transition:
+                          isHover === index ? "transform 0.3s ease-in-out" : "",
+                      }}
                     />
                   </Box>
-                  <Box>
+                  <Box
+                    style={{
+                      backgroundColor: isHover === index ? "#FFD333" : "white",
+                      color: isHover ? "white" : "black",
+                    }}
+                    flex={"1"}
+                    display={"flex"}
+                    flexDir={"column"}
+                    justifyContent={"center"}
+                    gap={"0.5rem"}
+                    px={"10px"}
+                  >
                     <Text
                       fontWeight={"500"}
                       color={"#3D464D"}
-                      mb={"0.5rem"}
                       fontSize={"1.2rem"}
-                      mt={"2rem"}
                     >
                       {item.categorie}
                     </Text>

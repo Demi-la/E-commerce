@@ -5,13 +5,20 @@ import { featuredProductData, vendors } from "./data";
 import { useGetProductQuery } from "../../../lib/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { FaShoppingCart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { useAppDispatch } from "@/lib/hooks";
+import { addToCart } from "@/features/cart/cartSlice";
 interface FeaturedProductType {
   productDetailsId?: number;
   index: number;
 }
 
 const FeaturedProduct: React.FC<FeaturedProductType> = () => {
+    const dispatch = useAppDispatch();
+    const handleAddToCart = (data: any) => {
+      dispatch(addToCart(data));
+    };
   const [isHover, setIsHover] = useState<number | null>(null);
 
   const router = useRouter();
@@ -34,6 +41,9 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
   const handleMouseLeave = () => {
     setIsHover(null);
   };
+    const handleNext = () => {
+      router.push("/products/cart");
+    };
 
   return (
     <>
@@ -96,7 +106,42 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
                           : "transparent",
                       color: isHover ? "white" : "black",
                     }}
-                  ></Box>
+                  >
+                    {isHover === index && (
+                      <Flex
+                        color={"#3D464D"}
+                        justifyContent={"center"}
+                        mt={"7rem"}
+                        gap={"2rem"}
+                      >
+                        <Box
+                          fontSize={"1rem"}
+                          border={"1px solid #3D464D"}
+                          padding={"0.6rem"}
+                          _hover={{
+                            backgroundColor: "#3D464D",
+                            color: "#FFD333",
+                          }}
+                          // onClick={() => handleAddToCart(data)}
+                        >
+                          {" "}
+                          <FaShoppingCart />
+                        </Box>
+                        <Box
+                          fontSize={"1rem"}
+                          border={"1px solid #3D464D"}
+                          padding={"0.6rem"}
+                          _hover={{
+                            backgroundColor: "#3D464D",
+                            color: "#FFD333",
+                          }}
+                        >
+                          {" "}
+                          <FaHeart />
+                        </Box>
+                      </Flex>
+                    )}
+                  </Box>
                   <Image
                     src={item.image}
                     alt={item.title}

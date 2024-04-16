@@ -57,9 +57,13 @@ function CarouselItems() {
   ];
   return (
     <>
-      <Box width={"100%"} p={"1rem 3rem 1rem 3rem"}>
-        <Flex gap={"2rem"}>
-          <Box width={"65%"}>
+      <Box
+        width={"100%"}
+        p={{ base: "1rem", lg: "1rem 3rem 1rem 3rem" }}
+        mt={"1rem"}
+      >
+        <Flex gap={"2rem"} flexDir={{ base: "column", lg: "row" }}>
+          <Box width={{ base: "100%", lg: "65%" }}>
             <Swiper
               spaceBetween={50}
               centeredSlides={true}
@@ -82,7 +86,7 @@ function CarouselItems() {
                       backgroundPosition="center"
                       backgroundRepeat="no-repeat"
                       backgroundSize="cover"
-                      h="70vh"
+                      h={{base:"55vh", lg:"70vh"}}
                       border={"0.5px solid transparent"}
                       // backgroundImage={`url(${item.picture.src})`}
                       backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.picture.src})`}
@@ -92,7 +96,7 @@ function CarouselItems() {
                         fontSize="3rem"
                         color={"white"}
                         textAlign="center"
-                        mt={"7rem"}
+                        mt={{ base:"5rem", lg:"7rem"}}
                       >
                         {item?.title}
                       </Text>
@@ -128,7 +132,11 @@ function CarouselItems() {
             </Swiper>
           </Box>
 
-          <Flex flexDir={"column"} gap={"2rem"} width={"30%"}>
+          <Flex
+            flexDir={"column"}
+            gap={"2rem"}
+            width={{ base: "100%", lg: "30%" }}
+          >
             {offers.map((item, index) => (
               <Box
                 key={index}
@@ -136,7 +144,7 @@ function CarouselItems() {
                 backgroundPosition="center"
                 backgroundRepeat="no-repeat"
                 backgroundSize="cover"
-                width={"25rem"}
+                width={{ base: "100%", lg: "25rem" }}
                 height={"13rem"}
               >
                 <Box color={"white"} mt={"3rem"}>

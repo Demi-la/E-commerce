@@ -32,7 +32,8 @@ const Categories = () => {
               CATEGORIES
             </Text>
             <Box
-              width={{ base: "65%", md: "80%", lg: "80%" }}
+              borderTop={"0.2px dashed #3D464D"}
+              width={{ base: "60%", md: "80%", lg: "82%" }}
               mt="10px"
               mb="10px"
               fontSize={"2px"}
@@ -44,14 +45,14 @@ const Categories = () => {
               md: "1fr 1fr",
               lg: "1fr 1fr 1fr 1fr",
             }}
-            gridRowGap={"2rem"}
+            gridRowGap={"0.5rem"}
             alignItems={"center"}
             justifyItems={"center"}
           >
             {CategoriesData.map((item, index) => (
               <Box
                 key={index}
-                w={{ base: "100%", md: "90%", lg: "18rem" }}
+                w={{ base: "90%", md: "90%", lg: "18rem" }}
                 h={"6rem"}
                 background={"white"}
                 mt={"1rem"}
@@ -59,10 +60,7 @@ const Categories = () => {
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
               >
-                <Flex
-                  position={"relative"}
-                  height={"100%"}
-                >
+                <Flex position={"relative"} height={"100%"}>
                   <Box width={"7rem"} overflow={"hidden"}>
                     <Image
                       src={item.photo}

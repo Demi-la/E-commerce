@@ -10,10 +10,10 @@ import CarouselItems from './banners/carouselItems'
 const Pages = () => {
   return (
     <Box>
-      <Box bg={"#f7fafc"}>
+      <Box bg={"#F5F5F5"}>
         {/* <CarouselItems/> */}
-        <Categories/>
-        <FeaturedProduct index={0}/>
+        <Categories />
+        <FeaturedProduct index={0} />
       </Box>
     </Box>
   );

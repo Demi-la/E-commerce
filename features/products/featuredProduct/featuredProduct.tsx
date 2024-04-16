@@ -66,7 +66,7 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
           </Text>
           <Box
             borderTop={"0.2px dashed #3D464D"}
-            width={{ base: "35%", md: "65%", lg: "70%" }}
+            width={{ base: "35%", md: "65%", lg: "72%" }}
             mt="10px"
             mb="10px"
             fontSize={"2px"}
@@ -85,7 +85,7 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
         >
           {data.map((item: any, index: number) => (
             <Link href={`/products/${item.id}`} key={item.id}>
-              <Box background={"white"} width={"18rem"} position={"relative"}>
+              <Box background={"white"} width={{base: "20rem", lg:"18rem"}} position={"relative"}>
                 <Box
                   height={"15rem"}
                   mb={"1rem"}

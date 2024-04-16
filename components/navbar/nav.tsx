@@ -67,7 +67,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
         {/*********************************************first nav bar start*****************************88*************/}
         <Flex
           justifyContent={"space-between"}
-          bg={"#f7fafc"}
+          bg={"#F5F5F5"}
           height={"3rem"}
           overflow={"hidden"}
           w={"100%"}
@@ -92,7 +92,7 @@ const Nav: React.FC<NavProps> = ({ isSidebarOpen, toggleSideBar }) => {
             <HStack
               mr={"4rem"}
               ml={{ base: "1rem", md: "0", lg: "0" }}
-              mt={{ base: "4px", md: "", lg: "4px" }}
+              mt={{ base: "4px", md: "", lg: "8px" }}
             >
               <Menu>
                 <MenuButton

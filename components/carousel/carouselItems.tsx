@@ -19,6 +19,10 @@ import carousel2 from "../../public/img/carousel-2.jpg";
 import carousel3 from "../../public/img/carousel-3.jpg";
 import offer1 from "../../public/img/offer-1.jpg";
 import offer2 from "../../public/img/offer-2.jpg";
+import { FaCheck } from "react-icons/fa6";
+import { FaShippingFast } from "react-icons/fa";
+import { LuArrowRightLeft } from "react-icons/lu";
+import { FaPhoneVolume } from "react-icons/fa";
 
 function CarouselItems() {
   const carouselData = [
@@ -55,13 +59,27 @@ function CarouselItems() {
       btn: "Shop Now",
     },
   ];
+   const services = [
+     {
+       icon: <FaCheck/>,
+       title: "Quality Product",
+     },
+     {
+       icon: <FaShippingFast/>,
+       title: "Free Shipping",
+     },
+     {
+       icon: <LuArrowRightLeft/>,
+       title: "14-Day Return",
+     },
+     {
+       icon: <FaPhoneVolume/>,
+       title: "24/7 Support",
+     },
+   ];
   return (
     <>
-      <Box
-        width={"100%"}
-        p={{ base: "1rem", lg: "1rem 3rem 1rem 3rem" }}
-        mt={"1rem"}
-      >
+      <Box width={"100%"} p={{ base: "1rem", lg: "2rem 3rem 1rem 3rem" }}>
         <Flex gap={"2rem"} flexDir={{ base: "column", lg: "row" }}>
           <Box width={{ base: "100%", lg: "65%" }}>
             <Swiper
@@ -86,7 +104,7 @@ function CarouselItems() {
                       backgroundPosition="center"
                       backgroundRepeat="no-repeat"
                       backgroundSize="cover"
-                      h={{base:"55vh", lg:"70vh"}}
+                      h={{ base: "55vh", lg: "70vh" }}
                       border={"0.5px solid transparent"}
                       // backgroundImage={`url(${item.picture.src})`}
                       backgroundImage={`linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.picture.src})`}
@@ -96,7 +114,7 @@ function CarouselItems() {
                         fontSize="3rem"
                         color={"white"}
                         textAlign="center"
-                        mt={{ base:"5rem", lg:"7rem"}}
+                        mt={{ base: "5rem", lg: "7rem" }}
                       >
                         {item?.title}
                       </Text>
@@ -176,6 +194,20 @@ function CarouselItems() {
               </Box>
             ))}
           </Flex>
+        </Flex>
+        <Flex mt={"5rem"} gap={"3rem"} flexDir={{ base: "column", lg: "row" }}>
+          {services.map((item, index) => (
+            <Box key={index} bg={"white"} p={"1.5rem 4rem 1.5rem 1.5rem"}>
+              <Flex gap={"1rem"}>
+                <Box fontSize={"3rem"} color={"#FFD333"}>
+                  {item?.icon}
+                </Box>
+                <Text fontWeight={"500"} fontSize={"1.2rem"} mt={"0.5rem"}>
+                  {item?.title}
+                </Text>
+              </Flex>
+            </Box>
+          ))}
         </Flex>
       </Box>
     </>

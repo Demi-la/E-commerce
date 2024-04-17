@@ -52,7 +52,7 @@ const Categories = () => {
             {CategoriesData.map((item, index) => (
               <Box
                 key={index}
-                w={{ base: "90%", md: "90%", lg: "18rem" }}
+                w={{ base: "95%", md: "90%", lg: "18rem" }}
                 h={"6rem"}
                 background={"white"}
                 mt={"1rem"}

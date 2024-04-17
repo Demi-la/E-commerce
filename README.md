@@ -25,6 +25,12 @@ This ecommerce website is built using Redux Toolkit and Next.js, offering a seam
 - Next.js: A React framework used for building fast and scalable web applications, providing server-side 
   rendering and other performance optimizations.
 
+- Chakra UI: A simple, modular, and accessible component library for building React applications with ease.
+
+- TypeScript: A statically typed superset of JavaScript that enhances code quality and developer productivity.
+
+- Swiper.js: A modern touch slider library for mobile and desktop browsers, providing smooth and seamless transitions between slides.
+
 ## Getting Started
 
 To get started with this project, follow these steps:

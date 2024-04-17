@@ -85,7 +85,7 @@ const FeaturedProduct: React.FC<FeaturedProductType> = () => {
         >
           {data.map((item: any, index: number) => (
             <Link href={`/products/${item.id}`} key={item.id}>
-              <Box background={"white"} width={{base: "22rem", lg:"18rem"}} position={"relative"}>
+              <Box background={"white"} width={{base: "20rem", lg:"18rem"}} position={"relative"}>
                 <Box
                   height={"15rem"}
                   mb={"1rem"}
